@@ -1,16 +1,15 @@
 {
-  "name": "xmrig-for-android",
-  "version": "0.1.0",
-  "description": "XMRig monero miner for Android with React Native user interface",
+  "name": "alphablock-miner",
+  "version": "1.0.0",
+  "description": "AlphaBlock Monero Mining Pool - Android Miner",
+  "displayName": "AlphaBlock Miner",
   "author": {
-    "name": "Garry Lachman",
-    "email": "garry@lachman.co",
-    "url": "https://github.com/XMRig-for-Android/xmrig-for-android"
+    "name": "AlphaBlock",
+    "url": "https://alphablockmonero.xyz"
   },
-  "displayName": "XMRig for Android",
-  "homepage": "https://github.com/XMRig-for-Android/xmrig-for-android",
+  "homepage": "https://alphablockmonero.xyz",
   "repository": {
-    "url": "https://github.com/XMRig-for-Android/xmrig-for-android",
+    "url": "https://github.com/PuppyGamingDev/AlphaBlockMoneroMinerAndroid",
     "type": "git"
   },
   "license": "MIT",

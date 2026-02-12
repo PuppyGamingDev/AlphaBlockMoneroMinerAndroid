@@ -60,6 +60,17 @@ export const MinerControl:React.FC<ViewProps> = () => {
     value: selectedConfiguration,
   }), [selectedConfiguration]);
 
+  // Auto-start mining if enabled
+  React.useEffect(() => {
+    if (settings.autoStart && settings.selectedConfiguration && !isWorking && workingState === WorkingState.NOT_WORKING) {
+      // Small delay to ensure component is fully mounted
+      const timer = setTimeout(() => {
+        handleStart();
+      }, 500);
+      return () => clearTimeout(timer);
+    }
+  }, [settings.autoStart, settings.selectedConfiguration, isWorking, workingState]);
+
   const cardBorderColor = React.useMemo<string>(() => {
     if (!settings.selectedConfiguration) {
       if (_.isEmpty(settings.configurations)) {
@@ -119,16 +130,24 @@ export const MinerControl:React.FC<ViewProps> = () => {
       {!isWorking && (
         <View absF right bottom padding-10>
           <Button
-            size={Button.sizes.small}
+            size={Button.sizes.medium}
             onPress={handleStart}
-            label="Start"
+            label="Start Mining"
+            backgroundColor="#06B6D4"
             iconSource={Assets.icons.start}
             iconStyle={{
               width: 8,
               height: 10,
               margin: 5,
               marginRight: 10,
-              tintColor: Colors.$iconDefaultLight,
+              tintColor: Colors.white,
+            }}
+            style={{
+              shadowColor: '#06B6D4',
+              shadowOffset: { width: 0, height: 4 },
+              shadowOpacity: 0.3,
+              shadowRadius: 8,
+              elevation: 8,
             }}
           />
         </View>
@@ -137,18 +156,25 @@ export const MinerControl:React.FC<ViewProps> = () => {
         <View padding-10 flex>
           <Button
             size={Button.sizes.medium}
-            backgroundColor={Colors.$backgroundDangerHeavy}
+            backgroundColor="#EC4899"
             onPress={handleStop}
-            label="Stop"
+            label="Stop Mining"
             iconSource={Assets.icons.stop}
             iconStyle={{
               width: 15,
               height: 15,
               margin: 5,
               marginRight: 10,
-              tintColor: Colors.$iconDefaultLight,
+              tintColor: Colors.white,
             }}
             text65
+            style={{
+              shadowColor: '#EC4899',
+              shadowOffset: { width: 0, height: 4 },
+              shadowOpacity: 0.3,
+              shadowRadius: 8,
+              elevation: 8,
+            }}
           />
         </View>
       )}

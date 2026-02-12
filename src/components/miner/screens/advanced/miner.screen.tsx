@@ -25,6 +25,16 @@ const MinerScreen = () => {
 
   return (
     <View bg-screenBG flex>
+      {/* AlphaBlock Header */}
+      <View paddingV-15 paddingH-20 center>
+        <Text text40 style={{ color: '#8B5CF6', fontWeight: 'bold' }} marginB-5>
+          AlphaBlock
+        </Text>
+        <Text text80 style={{ color: '#06B6D4' }}>
+          Monero Mining Pool
+        </Text>
+      </View>
+
       <View
         paddingV-10
         paddingH-10
@@ -33,10 +43,10 @@ const MinerScreen = () => {
       </View>
       <View flex paddingH-10>
         <ScrollView nestedScrollEnabled>
-          <View flex row spread centerV>
-            <Text text60>Miner Statistics</Text>
+          <View flex row spread centerV marginB-10>
+            <Text text60 style={{ color: '#E5E7EB' }}>Miner Statistics</Text>
             <View flex flex-1 right paddingH-10>
-              <Text text80>
+              <Text text80 style={{ color: CPUTemp > 80 ? '#EC4899' : '#06B6D4' }}>
                 {CPUTemp.toFixed(2)}
                 {' ℃'}
               </Text>

@@ -14,6 +14,9 @@ export type IPool = {
 
 // eslint-disable-next-line no-shadow
 export enum PredefinedPoolName {
+    AlphaBlockLow = 'alphablock-low',
+    AlphaBlockMedium = 'alphablock-medium',
+    AlphaBlockStandard = 'alphablock-standard',
     MoneroOcean = 'moneroocean',
     MineXMR = 'minexmr',
     SupportXMR = 'supportxmr',
@@ -39,6 +42,15 @@ export type IPredefinedPool = {
 export type IPredefinedPools = Record<PredefinedPoolName, IPredefinedPoolInfo>;
 
 export const predefinedPools:IPredefinedPools = {
+  [PredefinedPoolName.AlphaBlockLow]: {
+    displayName: 'AlphaBlock - Low Diff (Phones)', fee: 0, method: 'PPLNS', threshold: 0.003,
+  },
+  [PredefinedPoolName.AlphaBlockMedium]: {
+    displayName: 'AlphaBlock - Medium Diff', fee: 0, method: 'PPLNS', threshold: 0.003,
+  },
+  [PredefinedPoolName.AlphaBlockStandard]: {
+    displayName: 'AlphaBlock - Standard', fee: 0, method: 'PPLNS', threshold: 0.003,
+  },
   [PredefinedPoolName.MoneroOcean]: {
     displayName: 'MoneroOcean', fee: 0, method: 'PPLNS', threshold: 0.003,
   },
@@ -71,6 +83,10 @@ export const predefinedPoolsList: IPredefinedPool[] = Object
     name: poolName as PredefinedPoolName,
     info: predefinedPools[poolName as PredefinedPoolName],
   }));
+
+export {
+  AlphaBlock,
+} from './alphablock';
 
 export {
   MoneroOcean,

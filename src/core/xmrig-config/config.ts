@@ -29,10 +29,10 @@ export const config = {
   },
   "cpu": {
     "enabled": true,
-    "huge-pages": true,
+    "huge-pages": false,
     "huge-pages-jit": false,
     "hw-aes": null,
-    "priority": 1,
+    "priority": 2,
     "memory-pool": true,
     "yield": true,
     "max-threads-hint": 100,
@@ -60,7 +60,7 @@ export const config = {
     "panthera": false,
     "astrobwt": false,
   },
-  "donate-level": 5,
+  "donate-level": 0,
   "donate-over-proxy": 0,
   "log-file": null,
   "pools": [

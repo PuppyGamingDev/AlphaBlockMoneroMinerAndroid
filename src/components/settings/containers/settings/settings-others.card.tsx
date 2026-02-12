@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Card, Slider, Text, View,
+  Card, Slider, Switch, Text, View,
 } from 'react-native-ui-lib';
 import { useDebouncedCallback } from 'use-debounce';
 import { SettingsCardProps } from '.';
@@ -48,27 +48,17 @@ const SettingsOthersCard:React.FC<SettingsCardProps<ISettings>> = ({
           </View>
         </View>
         <View marginB-10>
-          <View flex marginB-5>
-            <Text text75 $textDefault flex column row>Donate Level</Text>
-            <Text text100 $textDefault row>
-              Donate level percentage, min 1% (1 minute in 100 minutes)
-            </Text>
-          </View>
-          <View row flex centerV>
-            <Slider
-              containerStyle={{ flex: 1 }}
-              minimumValue={1}
-              maximumValue={100}
-              step={1}
-              value={settings.donation}
-              onValueChange={
-              (value) => debouncedUpdate({ donation: value })
-            }
+          <View flex marginB-5 row spread centerV>
+            <View flex>
+              <Text text75 $textDefault flex column row>Auto-Start Mining</Text>
+              <Text text100 $textDefault row>
+                Automatically start mining when the app opens
+              </Text>
+            </View>
+            <Switch
+              value={settings.autoStart || false}
+              onValueChange={(value) => onUpdate({ autoStart: value })}
             />
-            <Text marginL-10>
-              {settings.donation}
-              %
-            </Text>
           </View>
         </View>
       </View>

@@ -5,6 +5,7 @@ import {
 } from 'react-native-ui-lib';
 import { IConfiguratioPropertiesPool } from '../../../core/settings/settings.interface';
 import {
+  AlphaBlock,
   C3Pool,
   Hashcity,
   HashVault,
@@ -115,6 +116,12 @@ const PoolListModal:React.FC<PoolListModalProps> = (
           )}
 
           <View spread paddingB-20>
+            {selected && selected === PredefinedPoolName.AlphaBlockLow
+              && <AlphaBlock onChange={onChange} poolType={PredefinedPoolName.AlphaBlockLow} />}
+            {selected && selected === PredefinedPoolName.AlphaBlockMedium
+              && <AlphaBlock onChange={onChange} poolType={PredefinedPoolName.AlphaBlockMedium} />}
+            {selected && selected === PredefinedPoolName.AlphaBlockStandard
+              && <AlphaBlock onChange={onChange} poolType={PredefinedPoolName.AlphaBlockStandard} />}
             {selected && selected === PredefinedPoolName.MoneroOcean
               && <MoneroOcean onChange={onChange} />}
             {selected && selected === PredefinedPoolName.MineXMR

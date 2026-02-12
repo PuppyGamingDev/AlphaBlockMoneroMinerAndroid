@@ -14,7 +14,7 @@ XMRig for Android provides a rich user interface for command-line XMRig miners. 
 
 
 # Installation
-Google Play Store link: https://play.google.com/store/apps/details?id=com.xmrigforandroid
+Google Play Store link: https://play.google.com/store/apps/details?id=com.alphablockminer
 
 # Layout
 

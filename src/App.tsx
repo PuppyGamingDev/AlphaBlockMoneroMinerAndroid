@@ -19,21 +19,21 @@ const AppWithSettings:React.FC = () => {
     LoadAssets();
     Colors.loadSchemes({
       light: {
-        screenBG: Colors.grey70,
-        textColor: Colors.grey10,
-        moonOrSun: Colors.yellow30,
-        mountainForeground: Colors.green30,
-        mountainBackground: Colors.green50,
+        screenBG: '#0A0E27', // AlphaBlock dark background
+        textColor: '#E5E7EB', // AlphaBlock text primary
+        moonOrSun: '#06B6D4', // AlphaBlock cyan
+        mountainForeground: '#8B5CF6', // AlphaBlock purple
+        mountainBackground: '#050816', // AlphaBlock darker background
       },
       dark: {
-        screenBG: Colors.grey10,
-        textColor: Colors.white,
-        moonOrSun: Colors.grey80,
-        mountainForeground: Colors.violet10,
-        mountainBackground: Colors.violet20,
+        screenBG: '#0A0E27', // AlphaBlock dark background
+        textColor: '#E5E7EB', // AlphaBlock text primary
+        moonOrSun: '#06B6D4', // AlphaBlock cyan
+        mountainForeground: '#8B5CF6', // AlphaBlock purple
+        mountainBackground: '#050816', // AlphaBlock darker background
       },
     });
-    Colors.setScheme('light');
+    Colors.setScheme('dark'); // Always use dark mode for AlphaBlock
   }, []);
 
   return (
@@ -45,6 +45,19 @@ const AppWithSettings:React.FC = () => {
 
 const App = () => {
   const { settings } = React.useContext(SettingsContext);
+  const [autoStartAttempted, setAutoStartAttempted] = React.useState(false);
+
+  // Auto-start mining if enabled
+  React.useEffect(() => {
+    if (settings.ready && settings.autoStart && !autoStartAttempted && settings.selectedConfiguration) {
+      setAutoStartAttempted(true);
+      // Small delay to ensure everything is initialized
+      setTimeout(() => {
+        const { useMiner } = require('./core/hooks/use-miner.hook');
+        // Note: This will be handled by the miner component when it mounts
+      }, 1000);
+    }
+  }, [settings.ready, settings.autoStart, settings.selectedConfiguration, autoStartAttempted]);
 
   if (settings.ready === false) {
     return <LoaderScreen message="Loading..." color={Colors.grey40} />;

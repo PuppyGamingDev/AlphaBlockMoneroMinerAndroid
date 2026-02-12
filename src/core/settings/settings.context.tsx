@@ -40,17 +40,19 @@ const initialState: ISettings = {
     resumeCPUTemperatureNormal: false,
     resumeCPUTemperatureNormalValue: 80.0,
   },
-  donation: 5,
+  donation: 0,
   printTime: 60,
+  autoStart: false,
 };
 
 export const defaultConfiguration: Partial<IConfiguration> = {
   xmrig_fork: XMRigFork.ORIGINAL,
 };
 
+// AlphaBlock only uses rx/0 (RandomX for Monero)
 const defaultAlgorithems = Algorithems.reduce((acc, item) => ({
   ...acc,
-  [item]: true,
+  [item]: item === Algorithm.RX_0, // Only enable rx/0
 }), {});
 
 export const defaultSimpleConfiguration: Partial<ISimpleConfiguration> = {
@@ -62,13 +64,8 @@ export const defaultSimpleConfiguration: Partial<ISimpleConfiguration> = {
     },
     algos: {
       ...defaultAlgorithems,
-      'cn/gpu': false,
-      'cn-heavy': false,
-      'cn-heavy/0': false,
-      'cn-heavy/tube': false,
-      'cn-heavy/xhv': false,
-      astrobwt: false,
-      panthera: false,
+      // Only rx/0 is enabled for AlphaBlock
+      'rx/0': true,
     },
     algo_perf: {},
   },

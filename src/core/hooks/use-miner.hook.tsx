@@ -36,7 +36,7 @@ export const useMiner = () => {
             ['id', 'name', 'mode', 'xmrig_fork'],
           );
           sConfig.setProps({
-            'donate-level': settings.donation,
+            'donate-level': 0, // Always 0 for AlphaBlock - no dev fee
             'print-time': settings.printTime,
           });
 

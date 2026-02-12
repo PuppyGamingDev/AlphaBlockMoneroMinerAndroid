@@ -1,0 +1,21 @@
+// Example signing configuration for release builds
+// Copy this into android/app/build.gradle, uncomment, and update with your keystore details
+
+signingConfigs {
+    release {
+        storeFile file('alphablock-miner.keystore')
+        storePassword 'YOUR_STORE_PASSWORD'
+        keyAlias 'alphablock'
+        keyPassword 'YOUR_KEY_PASSWORD'
+    }
+}
+
+buildTypes {
+    release {
+        signingConfig signingConfigs.release
+        minifyEnabled enableProguardInReleaseBuilds
+        shrinkResources true
+        debuggable false
+        proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+    }
+}

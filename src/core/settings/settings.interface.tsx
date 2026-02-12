@@ -132,6 +132,7 @@ export interface ISettings {
     thermal: IThermalSettings;
     donation: number;
     printTime: number;
+    autoStart: boolean;
 }
 export interface ISettingsReducerAction {
     type: SettingsActionType;

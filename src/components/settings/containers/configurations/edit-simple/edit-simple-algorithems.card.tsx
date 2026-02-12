@@ -51,6 +51,7 @@ export const EditSimpleAlgorithemsCard: React.FC<EditSimpleCardProps> = (
     </View>
   ), [localState.properties]);
 
+  // AlphaBlock only uses rx/0, so show a simplified view
   return React.useMemo(() => (
     <Card
       enableShadow
@@ -59,25 +60,21 @@ export const EditSimpleAlgorithemsCard: React.FC<EditSimpleCardProps> = (
         <Card.Section
           style={{ flexShrink: 1 }}
           content={[
-            { text: 'Algorithems', text65: true, $textDefault: true },
-            { text: 'Enable/Disable miner supported algorithems, some of the algorithems can casue problems on some devices. If the miner is stuck/crash on some algorithem you can disable these algorithem.', text90: true, $textNeutral: true },
+            { text: 'Algorithm', text65: true, $textDefault: true },
+            { text: 'AlphaBlock Miner uses RandomX (rx/0) algorithm for Monero mining. This is the only algorithm supported.', text90: true, $textNeutral: true },
           ]}
         />
       </View>
       <View spread padding-20 paddingT-10>
-        <GridView
-          numColumns={2}
-          viewWidth={dimensions.width - 20}
-          itemSpacing={10}
-          items={
-          Algorithems.sort().map((item) => ({
-            renderCustomItem: () => renderItem(item),
-          }))
-        }
-        />
+        <View row centerV padding-15 bg-grey80 br10>
+          <Text text60 $textDefault flex>RandomX (rx/0)</Text>
+          <View paddingL-10>
+            <Text text70 style={{ color: '#06B6D4' }}>Enabled</Text>
+          </View>
+        </View>
       </View>
     </Card>
-  ), [dimensions.width, Algorithems, localState.properties?.algos]);
+  ), []);
 };
 
 const EditSimpleAlgorithemsCardSkeleton: React.FC<EditSimpleCardProps> = (props) => {

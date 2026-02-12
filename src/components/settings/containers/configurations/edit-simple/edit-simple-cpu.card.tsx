@@ -168,9 +168,50 @@ export const EditSimpleCPUCard: React.FC<EditSimpleCardProps> = (
             trailingAccessory={<Text>% of device cores</Text>}
           />
           <Text text100 $textNeutralLight row>
+            Mining intensity: percentage of CPU cores to use. Lower values save battery.
             For 1 core CPU this option has no effect,
             for 2 core CPU only 2 values possible 50% and 100%,
             for 4 cores: 25%, 50%, 75%, 100%. etc.
+          </Text>
+        </View>
+        <View flex paddingT-10>
+          <View row flex centerV marginB-5>
+            <Text text80 $textNeutralLight flex>Battery Saver Mode</Text>
+            <Switch
+              value={localState.properties?.cpu?.max_threads_hint === 25 || localState.properties?.cpu?.priority === 1}
+              onValueChange={(value) => {
+                if (value) {
+                  // Battery saver: 25% threads, priority 1
+                  setLocalState((oldState) => merge(
+                    oldState,
+                    {
+                      properties: {
+                        cpu: {
+                          max_threads_hint: 25,
+                          priority: 1,
+                        },
+                      },
+                    },
+                  ));
+                } else {
+                  // Reset to defaults
+                  setLocalState((oldState) => merge(
+                    oldState,
+                    {
+                      properties: {
+                        cpu: {
+                          max_threads_hint: 50,
+                          priority: 2,
+                        },
+                      },
+                    },
+                  ));
+                }
+              }}
+            />
+          </View>
+          <Text text100 $textNeutralLight row>
+            Reduces mining to 25% CPU threads and lowest priority to save battery.
           </Text>
         </View>
       </View>

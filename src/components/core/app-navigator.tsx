@@ -16,18 +16,21 @@ const Stack = createStackNavigator();
 
 const Settings = React.lazy(() => import('../settings/settings-view'));
 const Miner = React.lazy(() => import('../miner/miner-view'));
+const Pool = React.lazy(() => import('../pool/pool-view'));
 
 const LazySettings = () => (<LazyLoader><Settings /></LazyLoader>);
 const LazyMiner = () => (<LazyLoader><Miner /></LazyLoader>);
+const LazyPool = () => (<LazyLoader><Pool /></LazyLoader>);
 
 const AppTabs:React.FC<ViewProps> = () => (
-  <TabController items={[{ label: 'Miner' }, { label: 'Settings' }]}>
+  <TabController items={[{ label: 'Mine' }, { label: 'Pool' }, { label: 'Settings' }]}>
     <TabController.TabBar
       enableShadow
     />
     <View flex>
       <TabController.TabPage index={0}><LazyMiner /></TabController.TabPage>
-      <TabController.TabPage index={1} lazy><LazySettings /></TabController.TabPage>
+      <TabController.TabPage index={1} lazy><LazyPool /></TabController.TabPage>
+      <TabController.TabPage index={2} lazy><LazySettings /></TabController.TabPage>
     </View>
   </TabController>
 );
@@ -46,7 +49,7 @@ export const AppNavigator:React.FC<ViewProps> = () => {
         component={AppTabs}
         // eslint-disable-next-line react/jsx-one-expression-per-line
         options={{
-          title: 'XMRig for Android',
+          title: 'AlphaBlock Miner',
           headerTitleContainerStyle: { marginLeft: 10 },
           headerRightContainerStyle: { marginRight: 10 },
           headerRight: () => (
@@ -62,7 +65,7 @@ export const AppNavigator:React.FC<ViewProps> = () => {
         name="Configuration"
         component={ConfigurationEditScreen}
         getId={({ params }: any) => params.id}
-        options={{ title: 'XMRig for Android | Configurations' }}
+        options={{ title: 'AlphaBlock Miner | Configurations' }}
       />
     </Stack.Navigator>
   );
